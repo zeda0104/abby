@@ -1,14 +1,28 @@
 import { AbbyEventType, HttpService } from "@tryabby/core";
-import { afterAll, beforeEach, describe, expect, it, vi } from "vitest";
+import Cookies from "js-cookie";
+import {
+  afterAll,
+  afterEach,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+} from "vitest";
 import { createAbby } from "../src";
 import { TestStorageService } from "../src/StorageService";
 
 const OLD_ENV = process.env;
 
 beforeEach(() => {
-  document.cookie = "";
-  vi.resetModules();
+  for (const name of Object.keys(Cookies.get())) {
+    Cookies.remove(name);
+  }
   process.env = { ...OLD_ENV };
+});
+
+afterEach(() => {
+  vi.restoreAllMocks();
 });
 
 afterAll(() => {

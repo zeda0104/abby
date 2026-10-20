@@ -49,7 +49,7 @@ describe("AbbyProvider & AbbyPlugin", () => {
       props: {
         initialData: {
           tests: [],
-          flags: [{ name: "flag1", value: false }],
+          flags: [{ name: "flag1", value: true }],
           remoteConfig: [],
         },
       },
@@ -58,6 +58,6 @@ describe("AbbyProvider & AbbyPlugin", () => {
       },
     });
 
-    expect(wrapper.find("#flag-state").text()).toBe("false");
+    expect(wrapper.find("#flag-state").text()).toBe("true");
   });
 });
